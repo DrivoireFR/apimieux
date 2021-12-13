@@ -1,6 +1,8 @@
 <template>
     <Wrapper>
-        <h1 class="agencies-title text-emerald-400 text-xl uppercase font-bold mb-8">Vos agences</h1>
+        <Title>
+            Vos agences
+        </Title>
 
         <div class="agencies-list grid grid-cols-2 gap-x-8 sm:grid-cols-3 gap-x-16 md:grid-cols-4">
             <router-link
@@ -22,12 +24,14 @@
 <script>
 import Card from '../components/Card.vue'
 import Wrapper from '../components/Wrapper.vue'
+import Title from '../components/Title.vue'
 
 export default {
     name: 'Agencies',
     components: {
         Card,
-        Wrapper
+        Wrapper,
+        Title
     },
     data () {
         return {

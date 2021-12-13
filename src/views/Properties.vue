@@ -1,11 +1,53 @@
 <template>
     <div class="properties">
-        Propriétés
+        <Wrapper>
+            <Title>
+                Vos propriétés
+            </Title>
+
+            <div class="properties grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <CardProperty
+                    v-for="(item, index) in properties"
+                    :key="index"
+                    :item="item"
+                />
+            </div>
+        </Wrapper>
     </div>
 </template>
 
 <script>
+import Wrapper from '../components/Wrapper.vue'
+import CardProperty from '../components/CardProperty.vue'
+import Title from '../components/Title.vue'
+
 export default {
-    name: 'Properties'
+    name: 'Properties',
+    components: {
+        Wrapper,
+        CardProperty,
+        Title
+    },
+    data () {
+        return {
+            properties: [
+                {
+                    title: 'Maison 1',
+                    desc: 'Suspendisse potenti. Ut tincidunt tincidunt erat. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
+                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                },
+                {
+                    title: 'Maison 2',
+                    desc: 'Suspendisse potenti. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
+                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                },
+                {
+                    title: 'Maison 3',
+                    desc: 'Tincidunt tincidunt erat. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
+                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                },
+            ]
+        }
+    }
 }
 </script>

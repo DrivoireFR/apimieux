@@ -4,14 +4,11 @@
             <img src="" alt="">
 
             <nav class="nav">
-                <router-link
-                v-for="(item, index) in nav"
-                :key="index"
-                class="m-6 text-white"
-                :to="item.path"
-            >
-                {{ item.name }}
-            </router-link>
+                <router-link class="m-4 text-white" to="/"> Login </router-link>
+                <router-link class="m-4 text-white" to="/agencies"> Agences </router-link>
+                <router-link class="m-4 text-white" to="/users"> Users </router-link>
+                <router-link class="m-4 text-white" to="/clients"> Clients </router-link>
+                <router-link class="m-4 text-white" to="/properties"> Propriétés </router-link>
             </nav>
         </div>
     </header>
@@ -22,33 +19,11 @@ export default {
     name: 'Header',
     data () {
         return {
-            nav: [
-                {
-                    path: "/",
-                    name: "Login"
-                },
-                {
-                    path: "/agencies",
-                    name: "Agencies"
-                },
-                {
-                    path: "/edit-agency",
-                    name: "Edit agency"
-                },
-                {
-                    path: "/clients",
-                    name: "Clients"
-                },
-                {
-                    path: "/users",
-                    name: "Users"
-                },
-                {
-                    path: "/properties",
-                    name: "Properties"
-                }
-            ]
+            logedIn: false
         }
+    },
+    mounted() {
+
     }
 }
 </script>
