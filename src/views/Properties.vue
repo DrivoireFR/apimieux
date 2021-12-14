@@ -1,9 +1,13 @@
 <template>
     <div class="properties">
         <Wrapper>
-            <Title>
-                Vos propriétés
-            </Title>
+            <div class="properties-params flex justify-between items-center mb-16">
+                <Title>
+                    Vos propriétés
+                </Title>
+
+                <button @click="addProperty" class="properties-add w-20 h-20 flex justify-center items-center bg-emerald-400 text-white text-4xl rounded-xl shadow-md">+</button>
+            </div>
 
             <div class="properties grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 <CardProperty
@@ -27,6 +31,11 @@ export default {
         Wrapper,
         CardProperty,
         Title
+    },
+    methods: {
+        addProperty () {
+            this.$router.push('/add-property')
+        }
     },
     data () {
         return {
