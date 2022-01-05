@@ -32,6 +32,21 @@ export default {
         CardProperty,
         Title
     },
+    created () {
+        const vm = this
+        const headers = {
+            'Authorization': localStorage.getItem('token')
+        }
+
+        this.$axios.get('/properties', {headers: headers})
+        .then((response) => {
+            console.log(response)
+            vm.properties = response.data
+        })
+        .catch( (err)=> {
+            console.log(err)
+        })
+    },
     methods: {
         addProperty () {
             this.$router.push('/add-property')
@@ -40,21 +55,30 @@ export default {
     data () {
         return {
             properties: [
-                {
-                    title: 'Maison 1',
-                    desc: 'Suspendisse potenti. Ut tincidunt tincidunt erat. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
-                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-                },
-                {
-                    title: 'Maison 2',
-                    desc: 'Suspendisse potenti. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
-                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-                },
-                {
-                    title: 'Maison 3',
-                    desc: 'Tincidunt tincidunt erat. Suspendisse eu ligula. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.',
-                    img: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-                },
+                // {
+                //     name: "Le beau bien",
+                //     agent: null,
+                //     address: "lirliuhdv",
+                //     area: 200,
+                //     agency: null,
+                //     price: 199999999
+                // },
+                // {
+                //     name: "Le beau bien",
+                //     agent: null,
+                //     address: "lirliuhdv",
+                //     area: 200,
+                //     agency: null,
+                //     price: 199999999
+                // },
+                // {
+                //     name: "Le beau bien",
+                //     agent: null,
+                //     address: "lirliuhdv",
+                //     area: 200,
+                //     agency: null,
+                //     price: 199999999
+                // },
             ]
         }
     }

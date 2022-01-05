@@ -39,22 +39,28 @@ export default {
     },
     methods: {
         addAgency () {
-            console.log('add agency')
+            this.$router.push('/add-agency')
         }
     },
     data () {
         return {
-            agencies: [
-                {
-                    name: 'Agences 1',
-                    id: '0'
-                },
-                {
-                    name: 'Agences 2',
-                    id: '1'
-                },
-            ]
+            agencies: []
         }
+    },
+    created() {
+        const vm = this
+        const headers = {
+            'Authorization': localStorage.getItem('token')
+        }
+
+        this.$axios.get('/agencies', {headers: headers})
+        .then((response) => {
+            console.log(response)
+            vm.agencies = response.data
+        })
+        .catch( (err)=> {
+            console.log(err)
+        })
     }
 }
 </script>

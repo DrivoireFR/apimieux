@@ -6,16 +6,18 @@
 
         <Card class="w-full max-w-md">
             <label for="mail-input" class="text-lg text-white">
-                Email
+                Username
                 <input id="mail-input" v-model="form.username" type="text" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
             </label>
 
-            <label for="mail-input" class="text-lg text-white">
+            <label for="password-input" class="text-lg text-white">
                 Password
-                <input id="mail-input" v-model="form.password" type="text" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
+                <input id="password-input" v-model="form.password" type="password" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
             </label>
 
             <input class="p-4 bg-white rounded-md text-emerald-400 shadow-md cursor-pointer hover:text-white hover:bg-emerald-300 transition-all" type="submit" value="Se connecter" @click="login">
+
+            <p class="error text-red-600 mt-4" v-for="(err, index) in errors" :key="index">{{ err }}</p>
         </Card>
     </Wrapper>
 </template>
@@ -34,6 +36,7 @@ export default {
     },
     data () {
         return {
+            errors: [],
             form: {
                 username: '',
                 password: ''
@@ -42,18 +45,23 @@ export default {
     },
     methods: {
         async login () {
-            const login = await this.$axios.post('/api/services/controller/user/login', this.form)
-            this.$axios.defaults.headers.common['Authorization'] = login.data
-            
-            
-            const getUsers = await this.$axios.get('/users')
-            console.log(getUsers)
-        
+            try {
+                this.errors = []
+                const login = await this.$axios.post('/api/services/controller/user/login', this.form)
+                // this.$axios.defaults.headers.common['Authorization'] = login.data
+                
+                // const getUsers = await this.$axios.get('/users')
+                // this.$store.commit('login')
+
+                localStorage.setItem("token", login.data)
+
+                this.$router.push('/agencies')
+            }
+            catch(err) {
+                this.errors.push(err)
+                console.log(err)
+            }
         }
     }
 }
 </script>
-
-<style>
-
-</style>

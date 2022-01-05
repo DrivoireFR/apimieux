@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <Title>
-            Ajouter une propriété
+            Ajouter une agence
         </Title>
 
         <Card class="w-full max-w-lg">
@@ -11,21 +11,16 @@
             </label>
 
             <label for="mail-input" class="text-lg text-white">
+                Entreprise
+                <input id="mail-input" v-model="company" type="text" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
+            </label>
+
+            <label for="mail-input" class="text-lg text-white">
                 Adresse
                 <input id="mail-input" v-model="address" type="address" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
             </label>
 
-            <label for="mail-input" class="text-lg text-white">
-                Surface
-                <input id="mail-input" v-model="area" type="number" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
-            </label>
-
-            <label for="mail-input" class="text-lg text-white">
-                Prix
-                <input id="mail-input" v-model="price" type="number" class="text-emerald-400 bg-white rounded-sm p-4 w-full mb-8">
-            </label>
-
-            <input class="p-4 bg-white rounded-md text-emerald-400 shadow-md cursor-pointer hover:text-white hover:bg-emerald-300 transition-all" type="submit" value="Ajouter la propriété" @click="addProperty">
+            <input class="p-4 bg-white rounded-md text-emerald-400 shadow-md cursor-pointer hover:text-white hover:bg-emerald-300 transition-all" type="submit" value="Ajouter la propriété" @click="addAgency">
         </Card>
     </Wrapper>
 </template>
@@ -36,7 +31,7 @@ import Wrapper from '../components/Wrapper.vue'
 import Title from '../components/Title.vue'
 
 export default {
-    name: 'AddProperty',
+    name: 'AddAgency',
     components: {
         Card,
         Title,
@@ -45,15 +40,13 @@ export default {
     data () {
         return {
             name: "",
-            agent: null,
-            address: "",
-            area: null,
-            agency: null,
-            price: null
+            company: "",
+            owner_id: 1,
+            address: ""
         }
     },
     methods: {
-        addProperty () {
+        addAgency () {
             const vm = this
             const headers = {
                 'Authorization': localStorage.getItem('token')
@@ -62,7 +55,7 @@ export default {
             this.$axios.put('/agency', this, {headers: headers})
             .then((response) => {
                 console.log(response)
-                vm.$router.push('/properties')
+                vm.$router.push('/agencies')
             })
             .catch( (err)=> {
                 console.log(err)

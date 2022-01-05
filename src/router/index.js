@@ -6,7 +6,7 @@ import Clients from "../views/Clients.vue";
 import Users from "../views/Users.vue";
 import Properties from "../views/Properties.vue";
 import AddProperty from "../views/AddProperty.vue";
-import AddClient from "../views/AddClient.vue";
+import AddAgency from "../views/AddAgency.vue";
 
 const routes = [
   {
@@ -45,9 +45,9 @@ const routes = [
     component: AddProperty,
   },
   {
-    path: "/add-client",
-    name: "AddClient",
-    component: AddClient,
+    path: "/add-agency",
+    name: "AddAgency",
+    component: AddAgency,
   },
 ];
 
