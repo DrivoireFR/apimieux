@@ -47,11 +47,13 @@ export default {
         async login () {
             try {
                 this.errors = []
-                const login = await this.$axios.post('/api/services/controller/user/login', this.form)
+                const headers = {
+                    'Content-Type': 'application/json',
+                    // 'Authorization': localStorage.getItem('token')
+                }
+                const login = await this.$axios.post('/api/services/controller/user/login', this.form, {headers: headers})
                 // this.$axios.defaults.headers.common['Authorization'] = login.data
-                
-                // const getUsers = await this.$axios.get('/users')
-                // this.$store.commit('login')
+
 
                 localStorage.setItem("token", login.data)
 

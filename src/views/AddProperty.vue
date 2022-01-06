@@ -60,7 +60,7 @@ export default {
                 'Authorization': localStorage.getItem('token')
             }
 
-            this.$axios.put('/agency', this, {headers: headers})
+            this.$axios.put('/property', this, {headers: headers})
             .then((response) => {
                 console.log(response)
                 vm.$router.push('/properties')
